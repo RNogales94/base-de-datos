@@ -37,11 +37,11 @@ function tryUserid(request, response, next) {
 app.set('port', process.env.PORT || 5000);
 
 app.get('/', function(request, response) {
-	response.set('Content-Encoding', 'gzip');
+	//response.set('Content-Encoding', 'gzip');
 	response.set('Content-Type', 'text/html; charset=utf-8');
 	response.set('Strict-Transport-Security', 'max-age=31536000');
 	response.set('X-Frame-Options', 'deny');
-	response.sendFile(__dirname + '/public/index.html.gz', {maxAge: '30m', immutable: true});
+	response.sendFile(__dirname + '/public/index.html', {maxAge: '30m', immutable: true});
 });
 
 app.use(bodyParser.json());
