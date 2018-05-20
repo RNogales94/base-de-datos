@@ -5,7 +5,7 @@
 		<title>Base de datos</title>
 		<meta name="author" content="Luis Castro Martín">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-signin-client_id" content="yourgoogleid">
+		<meta name="google-signin-client_id" content="806589839267-n7f2r90tj06pdjd479r0dbh8m1m1poo4.apps.googleusercontent.com">
 		<link rel="icon" href="https://luiscastro193.github.io/base-de-datos/public/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="https://luiscastro193.github.io/base-de-datos/public/styles.css">
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -18,16 +18,16 @@
 		<script>
 			"use strict";
 			if (location.protocol == 'http:') location.protocol = 'https:';
-			
+
 			function clearUser() {
 				gapi.auth2.getAuthInstance().signOut();
 				document.querySelector('main').innerHTML = '';
 			}
-			
+
 			function loadUser() {
 				let main = document.querySelector('main');
 				main.innerHTML = '';
-				
+
 				get("/username", true).then(username => {
 					main.innerHTML = `<p>Bienvenido,</p>
 					<p>${username}</p>
