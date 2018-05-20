@@ -13,25 +13,33 @@
 	</head>
 
 	<body>
-		<div class="g-signin2" data-onsuccess="loadUser" data-prompt="select_account"></div>
+		<div class="g-signin2" data-onsuccess="onSignIn" data-prompt="select_account"></div>
 		<main></main>
 		<script>
 			"use strict";
 			//if (location.protocol == 'http:') location.protocol = 'https:';
 
-			function clearUser() {
+			function signOut() {
 				gapi.auth2.getAuthInstance().signOut();
 				document.querySelector('main').innerHTML = '';
 			}
 
-			function loadUser() {
+			function onSignIn() {
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
 				let main = document.querySelector('main');
 				main.innerHTML = '';
 
 				get("/username", true).then(username => {
 					main.innerHTML = `<p>Bienvenido,</p>
 					<p>${username}</p>
-					<a href="javascript:void(0)" onclick="clearUser()">Sign out</a>`;
+					<a href="javascript:void(0)" onclick="signOut()">Sign out</a>`;
 				}).catch(errorHandler);
 			}
 		</script>
